@@ -515,7 +515,7 @@ VIS = {
 		window.open(
 			target.href,
 			target.target,
-			'width=550,height=300,resizable=yes,scrollbars=yes'
+			'width=550,height=450,resizable=yes,scrollbars=yes'
 		);
 
 		return false;

@@ -42,9 +42,9 @@
 			font-family: 'IBM Plex Mono', monospace;
 		}
 		.actions > a, .actions > span, .actions > button {
-    margin-bottom: 0.4em;
-    display: block;
-}
+			margin-bottom: 0.4em;
+			display: block;
+		}
 	</style>
 </head>
 <body>
@@ -121,7 +121,7 @@
 				<a id="cmdExpand">Expand</a> All
 			</span>
 			<a id="cmdHelp" href="https://web.archive.org/web/20200326054123/http://chris.photobooks.com/json/help.htm" target="help">Help</a>
-			<a id="cmdBeer" href="https://web.archive.org/web/20200326054123/http://chris.photobooks.com/json/beer.htm" target="beer">Beer Fund</a>
+			<a id="cmdBeer" href="beer.html" target="beer">Beer Fund</a>
 		</p>
 
 		<code id="jsonLocation"></code>
@@ -160,10 +160,10 @@
 	document.addEventListener('keydown', function(event) {
   if ((event.metaKey || event.ctrlKey) && event.key === 'Enter') {
 	console.log("Autorender!");
-    var element = document.getElementById('cmdRender');
-    if (element) {
-      element.click();
-    }
+	var element = document.getElementById('cmdRender');
+	if (element) {
+	  element.click();
+	}
   }
 });
 

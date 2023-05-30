@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Buy Chris a Beer</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<meta name="robots" content="noindex,follow"/>
+	<link rel="stylesheet" type="text/css" href="jsonviz_files/reset-fonts-grids.css"/>
+	<link rel="stylesheet" type="text/css" href="jsonviz_files/base.css"/>
+	<link rel="stylesheet" type="text/css" href="jsonviz_files/default.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@100;400;700&display=swap" rel="stylesheet">
+
+	<style type="text/css">
+		body { width: 500px; padding-top: 1em; }
+    * {
+			font-family: 'IBM Plex Sans', sans-serif;
+			line-height: 1.4;
+		}
+
+	</style>
+</head>
+<body>
+
+  <h3>A message from the original author of this tool</h3>
+	<p>
+		Think this tool comes in handy? It'd absolutely make my day to
+		<a href="mailto:nielsen.chris@gmail.com">hear from you</a>.
+	</p>
+
+	<p>
+		If you'd just like to buy me a beer, well, that'll work too!
+	</p>
+
+	<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+		<input type="hidden" name="cmd" value="_s-xclick"/>
+		<input type="hidden" name="hosted_button_id" value="65T6WKN5DPY8N"/>
+		<input type="image" src="jsonviz_files/btn_donate_SM.gif" name="submit" alt="PayPal - The safer, easier way to pay online!"/>
+		<img alt="" border="0" src="https://web.archive.org/web/20200201152612im_/https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1"/>
+	</form>
+
+  <hr />
+  <h3>A message from the maintainer of json-viz.onrender.com</h3>
+  <p>This tool is maintained as an appreciative public service, and honestly because I really missed it and want it available for myself.</p>
+  <p>As hosting doesn't cost me anything and I did little more than transplant the files from the Internet Archive, no donations are accepted by me.</p>
+  <p>If you have any concerns about this tool, please click below 7 times to email me:</p>
+  <p><button id="clicker">Email the maintainer</button> <span style="display: none;" id="help">Click <span>6</span> more times</span></p>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", (event) => {
+      const btn = document.getElementById('clicker');
+      const display = document.getElementById('help');
+      const number = document.querySelector('#help > span');
+
+      function decryptString(str) {
+        // Create a new string to store the transformed characters
+        let transformed = "";
+        
+        // Loop through each character in the string
+        for (let i = 0; i < str.length; i++) {
+          // Get the ASCII code of the current character
+          let charCode = str.charCodeAt(i);
+          
+          // If the character is a letter (uppercase or lowercase)
+          if ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122)) {
+            // Shift the character 13 places
+            charCode += 13;
+            
+            // If the character is now past the 'Z' or 'z', wrap it around
+            if ((charCode > 90 && charCode < 97) || charCode > 122) {
+              charCode -= 26;
+            }
+          }
+          
+          // Add the transformed character to the new string
+          transformed += String.fromCharCode(charCode);
+        }
+        
+        // Return the transformed string
+        return transformed;
+      }
+
+      const conAddress = 'envfref.ebqragf.0n777vpybhq.pbz'
+      var realAddress = '';
+      var clickListener = null;
+
+      window.clicksRemaining = 7;
+      window.clicksEnabled = true;
+      clickListener = btn.addEventListener('click', ()=> {
+        const address = (_) => {
+          const realAddress = decryptString(conAddress).replace('777', String.fromCharCode(8*8));
+          const span = document.createElement('span');
+          span.innerHTML = "Send email to: " + realAddress;
+          return span;
+        };
+        if (!window.clicksEnabled) { return; }
+        window.clicksRemaining = window.clicksRemaining - 1;
+        // console.log("clicksRemaining", window.clicksRemaining);
+
+        number.innerHTML = window.clicksRemaining.toString();
+        display.style.display = '';
+        if (window.clicksRemaining == 0) {
+          console.log(btn);
+          display.style.display = "none";
+          window.clicksEnabled = false;
+          btn.before(address());
+          btn.remove()
+        }
+      })
+    });
+
+
+
+  </script>
+
+</body>
+</html>
+<!--
+     FILE ARCHIVED ON 15:26:12 Feb 01, 2020 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 21:54:08 May 30, 2023.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 305.688 (11)
+  exclusion.robots: 0.127
+  exclusion.robots.policy: 0.119
+  cdx.remote: 0.05
+  esindex: 0.007
+  LoadShardBlock: 284.471 (3)
+  PetaboxLoader3.datanode: 72.682 (4)
+  load_resource: 139.694
+  PetaboxLoader3.resolve: 105.089
+-->
