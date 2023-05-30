@@ -453,7 +453,7 @@ VIS = {
 
 		query = 'Select * From json Where url="' + feed + '"';
 		url =
-			'https://web.archive.org/web/20190620101029/http://query.yahooapis.com/v1/public/yql' +
+			'http://query.yahooapis.com/v1/public/yql' +
 			'?q=' + encodeURIComponent(query) +
 			'&format=json' +
 			'&callback=VIS.gotFeed';
