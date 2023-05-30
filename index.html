@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<!-- saved from url=(0087)https://web.archive.org/web/20200326054123/http://chris.photobooks.com/json/default.htm -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>JSON Visualization</title>
+	
+	<meta name="robots" content="index,follow">
+
+	<meta name="description" content="Simple, easy method to visually inspect a JSON-encoded string.">
+
+	<meta name="keywords" content="json,visualize,pretty print,developer tool">
+
+	<link rel="stylesheet" type="text/css" href="./jsonviz_files/reset-fonts.css">
+
+	<link rel="stylesheet" type="text/css" href="./jsonviz_files/base.css">
+
+	<link rel="stylesheet" type="text/css" href="./jsonviz_files/default.css">
+
+	<script type="text/javascript" src="./jsonviz_files/yuiloader-dom-event.js"></script>
+
+	<script type="text/javascript" src="./jsonviz_files/json-min.js"></script>
+
+	<script type="text/javascript" src="./jsonviz_files/default.js"></script>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@100;400;700&display=swap" rel="stylesheet">
+
+	<style type="text/css">
+		* {
+			font-family: 'IBM Plex Sans', sans-serif;
+			line-height: 1.4;
+		}
+		button {
+			font-family: 'IBM Plex Sans', sans-serif;
+		}
+		button.default {
+			font-weight: bold;
+		}
+		pre, textarea, tt {
+			font-family: 'IBM Plex Mono', monospace;
+		}
+		.actions > a, .actions > span, .actions > button {
+    margin-bottom: 0.4em;
+    display: block;
+}
+	</style>
+</head>
+<body>
+
+	<h1>
+		<a href="http://www.json.org/" title="JavaScript Object Notation">JSON</a> Visualization
+	</h1>
+
+	<menu style="
+		margin: 0px 0px 1em 0px;
+		padding: 0px;
+		float: left;
+		width: 12em;">
+
+		<h3 style="margin-top: 0px;">Input</h3>
+
+		<p>
+			<label>
+				<input type="radio" name="jsonParser" id="jsonStrict" value="1" checked="checked"> Strict JSON
+			</label><br>
+
+			<label>
+				<input type="radio" name="jsonParser" id="jsonEval" value="0"> Eval
+			</label>
+		</p>
+
+		<h3>Output</h3>
+
+		<p id="jsonOutputSet">
+			<label>
+				<input type="radio" name="jsonOutStyle" id="json2HTML" value="1" checked="checked"> HTML
+			</label><br>
+
+			<label>
+				<input type="radio" name="jsonOutStyle" id="json2JSON" value="0"> JSON
+			</label>
+
+		</p>
+
+		<h3>Options:</h3>
+
+		<p id="jsonOptionSet" class="HTML">
+
+			<label id="jsonTrunc_label">
+				<input type="checkbox" id="jsonTrunc" value="1" checked="checked"> Truncate long strings
+			</label><br>
+
+			<label id="jsonDate_label">
+				<input type="checkbox" id="jsonDate" value="1" checked="checked"> Detect encoded dates
+			</label><br>
+
+			<label id="jsonData_label">
+				<input type="checkbox" id="jsonData" value="1" checked="checked"> Detect data structures
+			</label><br>
+
+			<label id="jsonSpace_label">
+				<input type="checkbox" id="jsonSpace" value="1">
+				Preserve whitespace
+			</label>
+		</p>
+
+		<h3>Actions:</h3>
+
+		<p class="actions">
+			<button id="cmdRender" class="default">Render</button>
+			<span id="loadCommands">
+				<button id="cmdLoad">Load</button>
+				<span id="reloadCommand" style="visibility: hidden;">
+					/ <a id="cmdReload">Reload</a>
+				</span>
+			</span>
+			<span id="loadMessage" style="display: none;">
+				Loading...
+			</span>
+			<button id="cmdValidate">Validate</button>
+			<button id="cmdClear">Clear</button>
+			<button id="cmdEncode">Re-encode</button>
+			<button id="cmdRemoveCRLF">Remove Line Breaks</button>
+			<button id="cmdDecodeURI">Decode URI</button>
+			<button id="cmdTrim2JSON">Trim non-JSON</button>
+			<span id="htmlCommands">
+				<a id="cmdCollapse">Collapse</a> /
+				<a id="cmdExpand">Expand</a> All
+			</span>
+			<a id="cmdHelp" href="https://web.archive.org/web/20200326054123/http://chris.photobooks.com/json/help.htm" target="help">Help</a>
+			<a id="cmdBeer" href="https://web.archive.org/web/20200326054123/http://chris.photobooks.com/json/beer.htm" target="beer">Beer Fund</a>
+		</p>
+
+		<code id="jsonLocation"></code>
+
+	</menu>
+
+	<div style="padding-left: 13em;">
+		<h2 style="margin-top: 0px; font-size: 108%;">
+			<label for="jsonInput">Input:</label> <span style="font-weight: 100; font-size: smaller;">(Try Ctrl-Enter or ⌘-Enter to render)</span>
+			<small id="jsonSize"></small>
+		</h2>
+		<textarea id="jsonInput" rows="10" cols="50" placeholder="Paste your JSON here" spellcheck="false" autofocus="autofocus"></textarea>
+
+		<h2 style="font-size: 108%;">Output:</h2>
+		<output style="display: block;" for="jsonInput cmdValidate" id="jsonValidateOutput"></output>
+		<output style="display: block;" for="jsonInput jsonStrict jsonEval json2HTML json2JSON jsonTrunc jsonDate jsonData jsonSpace" id="jsonOutput"></output>
+	</div>
+
+	<footer>
+		<div style="clear: both;">
+			<h3>Authorship</h3>
+			<p>Original code copyright by Chris Nielsen</p>
+			<p>This site is not affiliated with nor endorsed by Chris Nielsen. It was set up as a mirror, based on the Internet Archive, after Chris's website went down.</p>
+			<p>To view Chris Nielsen's contact information, please see <a href="https://web.archive.org/web/20200326054123/http://chris.photobooks.com/json/default.htm">the archived version</a>.</p>
+		</div>
+		<p>
+			<small><time pubdate="pubdate">2011-03-30</time>: Collapse /
+			Expand All functionality<br>
+			See also: <a href="https://web.archive.org/web/20200326054123/http://chris.photobooks.com/regex/default.htm">Regular Expressions</a> and
+			<a href="https://web.archive.org/web/20200326054123/http://chris.photobooks.com/xml/default.htm">XML Utilities</a></small>
+		</p>
+	</footer>
+
+<script id="AddedByDGPExtension">
+	// This listens for Command-Return or "Control-Enter" keystrokes and if it gets one, it clicks "Render" for you.
+	document.addEventListener('keydown', function(event) {
+  if ((event.metaKey || event.ctrlKey) && event.key === 'Enter') {
+	console.log("Autorender!");
+    var element = document.getElementById('cmdRender');
+    if (element) {
+      element.click();
+    }
+  }
+});
+
+</script>
+
+
+
+</body></html>
